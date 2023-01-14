@@ -57,19 +57,21 @@ export default {
   margin-top: 25vh;
 }
 
-button {
+.sso {
   border-radius: 40px;
   width: 342px;
   height: 68px;
   font-size: 1rem;
   font-weight: 700;
-}
-
-.sso {
   background: #00ff57;
 }
 
-.separator {
+.guest {
+  border-radius: 40px;
+  width: 342px;
+  height: 68px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .guest {
