@@ -1,6 +1,7 @@
 <template>
   <div class="mrt-stops">
-    <p>Where do you want to go?</p>
+    <p class="header">dotCast</p>
+    <p class="title">Where do you want to go?</p>
     <div class="dropdown">
       <v-select
         class="source"
@@ -16,6 +17,7 @@
     </div>
 
     <div class="categories">
+      <p class="title">Categories</p>
       <div
         class="check-options bg-gray-300 inset-0 absolute flex flex-col items-center justify-center"
       >
@@ -23,11 +25,7 @@
       </div>
     </div>
 
-    <div class="generate">
-      <button>
-        <p>generate</p>
-      </button>
-    </div>
+    <button class="generate"><p>Generate Playlist</p></button>
   </div>
 </template>
 
@@ -71,6 +69,24 @@ export default {
 </script>
 
 <style>
+.header {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem;
+  /* identical to box height */
+
+  color: #00ff57;
+}
+
+.title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #1e1e1e;
+}
+
 .dropdown {
   display: flex;
   justify-content: space-around;
@@ -85,6 +101,17 @@ export default {
   visibility: hidden;
 }
 
+.vs__search {
+  width: 20vw;
+  height: 5vh;
+  border-radius: 5px;
+}
+
+::placeholder {
+  font-weight: 500;
+  align-content: center;
+}
+
 .categories {
   display: flex;
   flex-direction: column;
@@ -93,5 +120,15 @@ export default {
 .check-options {
   display: flex;
   flex-direction: column;
+}
+
+.generate {
+  margin-top: 5vh;
+  border-radius: 40px;
+  width: 342px;
+  height: 68px;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #00ff57;
 }
 </style>
