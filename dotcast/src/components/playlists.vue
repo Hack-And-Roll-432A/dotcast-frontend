@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <p>My Recommende Podcast Playlist</p>
+</template>
 
 <script>
 import { defineComponent } from "@vue/composition-api";

@@ -3,26 +3,51 @@
     <p class="header">dotCast</p>
     <p class="title">Where do you want to go?</p>
     <div class="dropdown">
-      <v-select
-        class="source"
+      <Dropdown
+        v-model="selectedSource"
+        :options="mrtstations"
+        optionLabel="name"
+        :filter="true"
         placeholder="Source"
-        :options="mrtstation"
-      ></v-select>
-
-      <v-select
-        class="destination"
-        placeholder="Destination"
-        :options="mrtstation"
-      ></v-select>
-    </div>
-
-    <div class="categories">
-      <p class="title">Categories</p>
-      <div
-        class="check-options bg-gray-300 inset-0 absolute flex flex-col items-center justify-center"
+        :showClear="true"
       >
-        <multi-check-box v-model:value="categories" :options="options" />
-      </div>
+        <template #value="slotProps">
+          <div
+            class="source-item source-item-value source"
+            v-if="slotProps.value"
+          >
+            <div>{{ slotProps.value.name }}</div>
+          </div>
+        </template>
+        <template #option="slotProps">
+          <div class="source-item">
+            <div>{{ slotProps.option.name }}</div>
+          </div>
+        </template>
+      </Dropdown>
+
+      <Dropdown
+        v-model="selectedDestination"
+        :options="mrtstations"
+        optionLabel="name"
+        :filter="true"
+        placeholder="Destination"
+        :showClear="true"
+      >
+        <template #value="slotProps">
+          <div
+            class="destination-item destination-item-value destination"
+            v-if="slotProps.value"
+          >
+            <div>{{ slotProps.value.name }}</div>
+          </div>
+        </template>
+        <template #option="slotProps">
+          <div class="destination-item">
+            <div>{{ slotProps.option.name }}</div>
+          </div>
+        </template>
+      </Dropdown>
     </div>
 
     <button class="generate"><p>Generate Playlist</p></button>
@@ -30,45 +55,34 @@
 </template>
 
 <script>
-import vSelect from "vue-select";
-import MultiCheckbox from "../components/multi-checkbox.vue";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 export default {
-  data() {
-    return {
-      mrtstation: ["Kent Ridge", "Buona Vista"],
-    };
-  },
   setup() {
-    let categories = ref([]);
-    let options = ref([]);
+    const selectedSource = ref();
+    const selectedDestination = ref();
+    const mrtstations = ref([{ name: "Harbourfront", code: "CC29" }]);
 
-    const getCategoryOptions = () => {
-      options.value = [
-        { name: "Sports", id: 1 },
-        { name: "Rock", id: 2 },
-        { name: "Fantasy", id: 3 },
-      ];
-    };
-
-    onMounted(() => {
-      getCategoryOptions();
-    });
-
-    return {
-      categories,
-      options,
-    };
-  },
-  components: {
-    vSelect,
-    "multi-check-box": MultiCheckbox,
+    return { selectedSource, selectedDestination, mrtstations };
   },
 };
 </script>
 
-<style>
+<style scoped>
+.dropdown {
+  display: flex;
+  justify-content: space-around;
+}
+
+.p-dropdown {
+  width: 17.5rem;
+  height: 5vh;
+}
+
+.source {
+  border: black 2px;
+}
+
 .header {
   font-family: "Poppins";
   font-style: normal;
@@ -85,41 +99,6 @@ export default {
   font-weight: 700;
   font-size: 1.5rem;
   color: #1e1e1e;
-}
-
-.dropdown {
-  display: flex;
-  justify-content: space-around;
-}
-
-.vs_selected {
-  visibility: hidden;
-}
-
-.vs__actions {
-  display: none;
-  visibility: hidden;
-}
-
-.vs__search {
-  width: 20vw;
-  height: 5vh;
-  border-radius: 5px;
-}
-
-::placeholder {
-  font-weight: 500;
-  align-content: center;
-}
-
-.categories {
-  display: flex;
-  flex-direction: column;
-}
-
-.check-options {
-  display: flex;
-  flex-direction: column;
 }
 
 .generate {
