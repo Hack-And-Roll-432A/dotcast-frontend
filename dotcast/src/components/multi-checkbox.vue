@@ -56,4 +56,6 @@ export default {
     "check-box": Checkbox,
   },
 };
+
+console.log(options);
 </script>

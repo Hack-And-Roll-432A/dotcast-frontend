@@ -53,7 +53,15 @@
 <script>
 import vSelect from "vue-select";
 import { ref } from "vue";
-import { mrtStations } from "./mrtStations";
+// import { mrtStations } from "./mrtStations";
+
+const mrtStations = [
+  { code: "NS1", mrtName: "Jurong East" },
+  { code: "NS2", mrtName: "Bukit Batok" },
+  { code: "NS3", mrtName: "Bukit Gombak" },
+  { code: "NS4", mrtName: "Choa Chu Kang" },
+  { code: "NS5", mrtName: "Yew Tee" },
+];
 
 export default {
   data() {
