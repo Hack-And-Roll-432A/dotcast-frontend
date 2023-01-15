@@ -1,10 +1,40 @@
 <template>
-  <div class="mrt-stops">
-    <p>Where do you want to go?</p>
-    <div class="dropdown">
+  <div class="container">
+    <v-row>
+      <p>Where do you want to go?</p>
+      <!-- <v-card>
+        <v-card-text> Where do you want to go? </v-card-text>
+      </v-card> -->
+    </v-row>
+
+    <v-row>
+      <v-select
+        label="Select"
+        :options="mrtstation"
+        placeholder="Source"
+      ></v-select>
+    </v-row>
+    <v-row>
+      <v-select
+        label="Select"
+        :options="[
+          'California',
+          'Colorado',
+          'Florida',
+          'Georgia',
+          'Texas',
+          'Wyoming',
+        ]"
+        placeholder="Destination"
+        variant="solo"
+      ></v-select>
+    </v-row>
+
+    <!-- <div class="dropdown">
       <v-select
         class="source"
         placeholder="Source"
+        solo
         :options="mrtstation"
       ></v-select>
 
@@ -12,60 +42,34 @@
         class="destination"
         placeholder="Destination"
         :options="mrtstation"
-      ></v-select>
-    </div>
-
-    <div class="categories">
-      <div
-        class="check-options bg-gray-300 inset-0 absolute flex flex-col items-center justify-center"
-      >
-        <multi-check-box v-model:value="categories" :options="options" />
-      </div>
-    </div>
-
-    <div class="generate">
-      <button>
-        <p>generate</p>
-      </button>
-    </div>
+      ></v-select> -->
+    <!-- </div> -->
+    <v-row>
+      <v-btn> Generate </v-btn>
+    </v-row>
   </div>
 </template>
 
 <script>
 import vSelect from "vue-select";
-import MultiCheckbox from "../components/multi-checkbox.vue";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
+import { mrtStations } from "./mrtStations";
 
 export default {
   data() {
     return {
-      mrtstation: ["Kent Ridge", "Buona Vista"],
+      mrtstation: mrtStations,
     };
   },
   setup() {
-    let categories = ref([]);
     let options = ref([]);
 
-    const getCategoryOptions = () => {
-      options.value = [
-        { name: "Sports", id: 1 },
-        { name: "Rock", id: 2 },
-        { name: "Fantasy", id: 3 },
-      ];
-    };
-
-    onMounted(() => {
-      getCategoryOptions();
-    });
-
     return {
-      categories,
       options,
     };
   },
   components: {
     vSelect,
-    "multi-check-box": MultiCheckbox,
   },
 };
 </script>
@@ -94,4 +98,23 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25vh;
+
+  /* max-width: 500px; */
+  min-height: 500px;
+}
+
+/* .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25vh;
+} */
 </style>

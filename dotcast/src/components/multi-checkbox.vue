@@ -7,7 +7,7 @@
       :checked="value.includes(option.id)"
       @update:checked="check(option.id, $event)"
       :fieldId="option.name"
-      :label="option.name"
+      :label="option.code + ' ' + option.name"
       :key="option"
     />
   </div>
